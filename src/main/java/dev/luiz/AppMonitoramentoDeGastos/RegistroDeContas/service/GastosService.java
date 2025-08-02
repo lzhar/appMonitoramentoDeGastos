@@ -1,6 +1,10 @@
 package dev.luiz.AppMonitoramentoDeGastos.RegistroDeContas.service;
 
+import com.opencsv.CSVWriter;
 import org.springframework.stereotype.Service;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 @Service
 public class GastosService {
@@ -14,7 +18,30 @@ public class GastosService {
 
     public void montarPlanilhaBaseadaNosDados(double gastosComPassagem, double gastosComFatura, double dinheiroDestinadoParaInvestimentos, double gastosComBeleza, double gastosComLazer){
         double salario = 3000;
+        String caminho = "despesas.csv";
 
+
+
+        try(CSVWriter writer = new CSVWriter(new FileWriter(caminho))){
+            String passagemEmString = Double.toString(gastosComPassagem);
+            String gastosComFaturaEmString = Double.toString(gastosComFatura);
+            String dinheiroDestinadoParaInvestimentosEmString = Double.toString(dinheiroDestinadoParaInvestimentos);
+            String gastosComBelezEmString = Double.toString(gastosComBeleza);
+            String gastosComLazerEmString = Double.toString(gastosComLazer);
+            String salarioEmString = Double.toString(salario);
+
+
+
+            String[] cabecalho = {"Salario", "Gastos com passagem", "Gastos com fatura", "dinheiro para investimentos", "gastos com beleza", "gastos com lazer"};
+            writer.writeNext(cabecalho);
+
+            writer.writeNext(new String[]{salarioEmString, passagemEmString, gastosComFaturaEmString, dinheiroDestinadoParaInvestimentosEmString, gastosComBelezEmString, gastosComLazerEmString});
+
+
+            System.out.println("CSV gerado com sucesso!");
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
         double porcentagemDoSalario = retornarPorcentagemNoSalario(salario, gastosComBeleza);
         System.out.println(porcentagemDoSalario);
 
