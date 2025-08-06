@@ -5,62 +5,91 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GastosDTO {
 
-    @JsonProperty("gastos_com_passagem")
-    private double gastosComPassagem;
-    @JsonProperty("gastos_com_fatura")
-    private double gastosComFatura;
+    @JsonProperty("gastos_com_locomocao")
+    private GastosComLocomocao gastosComLocomocao;
+    @JsonProperty("gastos_fixos")
+    private GastosFixos gastosComFixos;
     @JsonProperty("dinheiro_destinado_para_investimentos")
-    private double dinheiroDestinadoParaInvestimentos;
+    private DinheiroDestinadoParaInvestimentos dinheiroDestinadoParaInvestimentos;
     @JsonProperty("gastos_com_beleza")
-    private double gastosComBeleza;
+    private GastosComBeleza gastosComBeleza;
     @JsonProperty("gastos_com_lazer")
-    private double gastosComLazer;
+    private GastosComLazer gastosComLazer;
 
-    public GastosDTO(double gastosComPassagem, double gastosComFatura, double dinheiroDestinadoParaInvestimentos, double gastosComBeleza, double gastosComLazer){
-        this.gastosComPassagem = gastosComPassagem;
-        this.gastosComFatura = gastosComFatura;
-        this.dinheiroDestinadoParaInvestimentos = dinheiroDestinadoParaInvestimentos;
-        this.gastosComBeleza = gastosComBeleza;
-        this.gastosComLazer = gastosComLazer;
+    public GastosDTO(){
+
     }
 
-    public double getGastosComPassagem() {
-        return gastosComPassagem;
+    public GastosDTO(GastosComLocomocao gastosComLocomocao, GastosFixos gastosComFixos, DinheiroDestinadoParaInvestimentos dinheiroDestinadoParaInvestimentos, GastosComBeleza gastosComBeleza, GastosComLazer gastosComLazer){
+
+        if(gastosComLocomocao != null){
+            this.gastosComLocomocao = gastosComLocomocao;
+        }
+        if(gastosComFixos != null){
+            this.gastosComFixos = gastosComFixos;
+        }
+        if(dinheiroDestinadoParaInvestimentos != null){
+            this.dinheiroDestinadoParaInvestimentos = dinheiroDestinadoParaInvestimentos;
+        }
+
+        if(gastosComBeleza != null){
+            this.gastosComBeleza = gastosComBeleza;
+        }
+
+        if(gastosComLazer != null){
+            this.gastosComLazer = gastosComLazer;
+        }
+
     }
 
-    public void setGastosComPassagem(double gastosComPassagem) {
-        this.gastosComPassagem = gastosComPassagem;
+    public GastosComLocomocao getGastosComLocomocao() {
+        return gastosComLocomocao;
     }
 
-    public double getGastosComFatura() {
-        return gastosComFatura;
+    public void setGastosComPassagem(GastosComLocomocao gastosComLocomocao) {
+        this.gastosComLocomocao = gastosComLocomocao;
     }
 
-    public void setGastosComFatura(double gastosComFatura) {
-        this.gastosComFatura = gastosComFatura;
+    public GastosFixos getGastosComFixos() {
+        return gastosComFixos;
     }
 
-    public double getDinheiroDestinadoParaInvestimentos() {
+    public void setGastosComFatura(GastosFixos gastosComFixos) {
+        this.gastosComFixos = gastosComFixos;
+    }
+
+    public DinheiroDestinadoParaInvestimentos getDinheiroDestinadoParaInvestimentos() {
         return dinheiroDestinadoParaInvestimentos;
     }
 
-    public void setDinheiroDestinadoParaInvestimentos(double dinheiroDestinadoParaInvestimentos) {
+    public void setDinheiroDestinadoParaInvestimentos(DinheiroDestinadoParaInvestimentos dinheiroDestinadoParaInvestimentos) {
         this.dinheiroDestinadoParaInvestimentos = dinheiroDestinadoParaInvestimentos;
     }
 
-    public double getGastosComBeleza() {
+    public GastosComBeleza getGastosComBeleza() {
         return gastosComBeleza;
     }
 
-    public void setGastosComBeleza(double gastosComBeleza) {
+    public void setGastosComBeleza(GastosComBeleza gastosComBeleza) {
         this.gastosComBeleza = gastosComBeleza;
     }
 
-    public double getGastosComLazer() {
+    public GastosComLazer getGastosComLazer() {
         return gastosComLazer;
     }
 
-    public void setGastosComLazer(double gastosComLazer) {
+    public void setGastosComLazer(GastosComLazer gastosComLazer) {
         this.gastosComLazer = gastosComLazer;
+    }
+
+    @Override
+    public String toString() {
+        return "GastosDTO{" +
+                "gastosComLocomocao=" + gastosComLocomocao +
+                ", gastosComFixos=" + gastosComFixos +
+                ", dinheiroDestinadoParaInvestimentos=" + dinheiroDestinadoParaInvestimentos +
+                ", gastosComBeleza=" + gastosComBeleza +
+                ", gastosComLazer=" + gastosComLazer +
+                '}';
     }
 }
