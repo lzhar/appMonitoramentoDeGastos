@@ -17,13 +17,11 @@ public class GastosController {
 
     @PostMapping("/enviargastos")
     public ResponseEntity<?> enviarInfoParaMonitoramento(@RequestBody GastosDTO gastosDTO){
-        GastosDTO gastos = new GastosDTO(gastosDTO.getGastosComPassagem(), gastosDTO.getGastosComFatura(),
+
+        gastosService.receberDadosDeGastoDoCliente(gastosDTO.getGastosComLocomocao(), gastosDTO.getGastosComFixos(),
                 gastosDTO.getDinheiroDestinadoParaInvestimentos(), gastosDTO.getGastosComBeleza(), gastosDTO.getGastosComLazer());
 
-        gastosService.montarPlanilhaBaseadaNosDados(gastosDTO.getGastosComPassagem(), gastosDTO.getGastosComFatura(),
-                gastosDTO.getDinheiroDestinadoParaInvestimentos(), gastosDTO.getGastosComBeleza(), gastosDTO.getGastosComLazer());
-
-        return ResponseEntity.accepted().body(gastos);
+        return ResponseEntity.accepted().body("a");
 
     }
 
